@@ -9,24 +9,21 @@ import java.util.List;
  */
 public class SubListDemo {
     public static void main(String[] args) {
-        int length = 10;
+        // 初始化 list 为 1, 2, 3, 4, 5
         List<Integer> list = new ArrayList<>();
-        for (int i = 0; i < length; i++) {
+        int len = 5;
+        for (int i = 1; i <= len; i++) {
             list.add(i);
         }
 
-        int subLength = 5;
-        int fromIndex = 0;
-        while (fromIndex < length) {
-            int toIndex = Math.min(fromIndex + subLength, length);
-            List<Integer> subList = list.subList(fromIndex, toIndex);
-            doSomething(subList);
-            fromIndex = toIndex;
-        }
-    }
+        // 取前 3 个元素作为 subList，操作 subList
+        List<Integer> subList = list.subList(0, 3);
+        subList.add(6);
 
-    private static void doSomething(List<Integer> subList) {
-        subList.forEach(System.out::println);
-        subList.removeIf(v -> v == 1);
+        System.out.println(list.size());
+
+        list.remove(1);
+        // java.util.ConcurrentModificationException
+        System.out.println(subList);
     }
 }
